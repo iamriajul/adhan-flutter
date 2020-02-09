@@ -22,6 +22,14 @@ class Adhan {
 
   Adhan(this._coordinates, this._date, this._method);
 
+  void setMadhab(Madhab madhab) {
+    _madhab = madhab;
+  }
+
+  void setHighLatitudeRule(HighLatitudeRule highLatitudeRule) {
+    _highLatitudeRule = highLatitudeRule;
+  }
+
   Map<String, dynamic> _buildArguments() {
     final arguments = <String, dynamic>{
       'latitude': _coordinates.latitude,
@@ -29,9 +37,8 @@ class Adhan {
       'date': _date.millisecondsSinceEpoch,
       'method': _method.toString(),
     };
-    print(_method.toString());
     if (_madhab != null) {
-      arguments['madhab'] = _madhab;
+      arguments['madhab'] = _madhab.toString();
     }
     if (_fajrAngle != null) {
       arguments['fajrAngle'] = _fajrAngle;
