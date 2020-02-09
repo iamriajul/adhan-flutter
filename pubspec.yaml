@@ -1,8 +1,8 @@
 name: adhan_flutter
-description: Adhan for Flutter.
+description: Adhan for Flutter / Muslim Prayer Times Plugin.
 version: 0.0.1
-author:
-homepage:
+author: Riajul Islam <kmriajulislami@gmail.com>
+homepage: https://github.com/iamriajul/adhan-flutter
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
-
 import 'package:adhan_flutter/adhan_flutter.dart';
 
 void main() => runApp(MyApp());
