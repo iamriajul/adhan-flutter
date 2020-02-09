@@ -128,6 +128,7 @@ extension PrayerString on String {
         return Prayer.ISHA;
       }
     }
+    return Prayer.NONE;
   }
 }
 
