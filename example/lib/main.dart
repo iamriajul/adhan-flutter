@@ -82,7 +82,6 @@ class _MyAppState extends State<MyApp> {
                       }
                     },
                   ),
-
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 16),
