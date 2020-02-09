@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:intl/intl.dart';
 
-import 'package:flutter/services.dart';
 import 'package:adhan_flutter/adhan_flutter.dart';
 
 void main() => runApp(MyApp());
@@ -12,32 +12,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  // Address: Jagati, Kushtia, Bangladesh
+  final latitude = 22.631100;
+  final longitude = 88.102110;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await AdhanFlutter.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -47,10 +28,107 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Container(
+          padding: EdgeInsets.all(16),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 16),
+                  child: Text("Today's Fajr Prayer Time", style: TextStyle(
+                    fontSize: 22
+                  ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder(
+                    future: getTodayFajrTime(),
+                    builder: (context, AsyncSnapshot<DateTime> snapshot) {
+                      if (snapshot.hasData) {
+                        final dateTime = snapshot.data.toLocal();
+                        return Text(DateFormat.jm().format(dateTime), style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold
+                        ),);
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      } else {
+                        return Text('Waiting...');
+                      }
+                    },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 16),
+                  child: Text("Current Prayer", style: TextStyle(
+                      fontSize: 22
+                  ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder(
+                    future: getCurrentPrayer(),
+                    builder: (context, AsyncSnapshot<Prayer> snapshot) {
+                      if (snapshot.hasData) {
+                        final prayer = snapshot.data;
+                        return Text(prayer.toString(), style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold
+                        ),);
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      } else {
+                        return Text('Waiting...');
+                      }
+                    },
+                  ),
+
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 16),
+                  child: Text("Next Prayer", style: TextStyle(
+                      fontSize: 22
+                  ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder(
+                    future: getNextPrayer(),
+                    builder: (context, AsyncSnapshot<Prayer> snapshot) {
+                      if (snapshot.hasData) {
+                        final prayer = snapshot.data;
+                        return Text(prayer.toString(), style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold
+                        ),);
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      } else {
+                        return Text('Waiting...');
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  Future<DateTime> getTodayFajrTime() async {
+    final adhan = AdhanFlutter.create(Coordinates(latitude, longitude), DateTime.now(), CalculationMethod.KARACHI);
+    return await adhan.fajr;
+  }
+
+  Future<Prayer> getCurrentPrayer() async {
+    final adhan = AdhanFlutter.create(Coordinates(latitude, longitude), DateTime.now(), CalculationMethod.KARACHI);
+    return await adhan.currentPrayer();
+  }
+
+  Future<Prayer> getNextPrayer() async {
+    final adhan = AdhanFlutter.create(Coordinates(latitude, longitude), DateTime.now(), CalculationMethod.KARACHI);
+    return await adhan.nextPrayer();
   }
 }
