@@ -93,7 +93,7 @@ class Adhan {
   }
 
   Future<DateTime> get maghrib async {
-    int prayerTime = await AdhanFlutter._channel.invokeMethod<int>('asr', _buildArguments());
+    int prayerTime = await AdhanFlutter._channel.invokeMethod<int>('maghrib', _buildArguments());
     return DateTime.fromMillisecondsSinceEpoch(prayerTime);
   }
 
