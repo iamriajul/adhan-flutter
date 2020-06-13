@@ -1,5 +1,7 @@
 # *** Use [adhan](https://pub.dev/packages/adhan_flutter) for best compatibility and performances ***
 
+# *** DEPRECATED ***
+
 # adhan_flutter
 
 This plugin is an Intergration for [adhan-java](https://github.com/batoulapps/adhan-java) Library in Flutter using [Platform Intergration/Platform Channels](https://flutter.dev/docs/development/platform-integration/platform-channels).
