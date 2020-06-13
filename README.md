@@ -1,3 +1,5 @@
+# *** Use [adhan](https://pub.dev/packages/adhan_flutter) for best compatibility and performances ***
+
 # adhan_flutter
 
 This plugin is an Intergration for [adhan-java](https://github.com/batoulapps/adhan-java) Library in Flutter using [Platform Intergration/Platform Channels](https://flutter.dev/docs/development/platform-integration/platform-channels).
@@ -121,4 +123,4 @@ View the Flutter app in the `example` directory to see all the available `Exampl
    
 ## TODO
 - Add iOS Support using [adhan-swift](https://github.com/batoulapps/adhan-swift)
-- Port [adhan-java](https://github.com/batoulapps/adhan-java) to Dart.
+- ~~Port [adhan-java](https://github.com/batoulapps/adhan-java) to Dart.~~
