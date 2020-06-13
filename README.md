@@ -1,4 +1,4 @@
-# *** Use [adhan](https://pub.dev/packages/adhan_flutter) for best compatibility and performances ***
+# *** Use [adhan](https://pub.dev/packages/adhan) for best compatibility and performances ***
 
 # *** DEPRECATED ***
 
@@ -125,4 +125,4 @@ View the Flutter app in the `example` directory to see all the available `Exampl
    
 ## TODO
 - Add iOS Support using [adhan-swift](https://github.com/batoulapps/adhan-swift)
-- ~~Port [adhan-java](https://github.com/batoulapps/adhan-java) to Dart.~~ Done, here you go: [adhan](https://pub.dev/packages/adhan_flutter) for dart.
+- ~~Port [adhan-java](https://github.com/batoulapps/adhan-java) to Dart.~~ Done, here you go: [adhan](https://pub.dev/packages/adhan) for dart.
